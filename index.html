@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Paisaje Natural</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <button class="menu-btn" id="menuBtn" aria-controls="sidebar" aria-expanded="false">
+    ☰ Menú
+  </button>
+
+  <aside class="sidebar" id="sidebar" data-open="false">
+    <div class="sidebar-inner">
+      <div class="sidebar-title">Paisaje Natural</div>
+
+      <nav class="nav">
+        <a class="nav-item" href="proyecto.html">Nuestro proyecto</a>
+        <a class="nav-item" href="quienes-somos.html">Quiénes somos</a>
+        <a class="nav-item" href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </aside>
+
+  <main class="main">
+    <img class="logo" src="logo.jpeg" alt="Paisaje Natural" />
+  </main>
+
+  <script>
+    const btn = document.getElementById("menuBtn");
+    const sidebar = document.getElementById("sidebar");
+
+    function setOpen(open) {
+      sidebar.dataset.open = open ? "true" : "false";
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+
+    btn.addEventListener("click", () => {
+      const isOpen = sidebar.dataset.open === "true";
+      setOpen(!isOpen);
+    });
+
+    document.addEventListener("click", (e) => {
+      const clickedInside = sidebar.contains(e.target) || btn.contains(e.target);
+      if (!clickedInside) setOpen(false);
+    });
+
+    setOpen(false);
+  </script>
+</body>
+</html>
